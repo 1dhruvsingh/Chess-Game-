@@ -1,2 +1,3 @@
 # Chess-Python-project
-Chess Analysis AI bot using python language 
+Chess board game (using python)
+Author - Dhruv Singh 
