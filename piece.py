@@ -56,5 +56,5 @@ class Rook(Piece):
 class King(Piece):
     
     def __init__(self,colour):
-        super().__init__('king',colour,math.infinity)
+        super().__init__('king',colour, 1000000)
         
