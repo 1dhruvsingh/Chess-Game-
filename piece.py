@@ -6,7 +6,7 @@ class Piece:
         self.name= name
         self.colour= colour
         
-        if colour = 'white':
+        if colour == 'white':
             value_sign=1
         else: 
             value_sign=-1
