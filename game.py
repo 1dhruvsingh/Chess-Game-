@@ -1,6 +1,6 @@
 import pygame
 from const import *
-from board import Board
+from board import board
 
 class  Game:
     

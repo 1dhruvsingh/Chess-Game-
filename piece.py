@@ -14,7 +14,7 @@ class Piece:
         self.moves=[]
         self.moved=False
         self.texture= texture
-        self.texture()
+        self.set_texture()
         self.texture_rect=  texture_rect
         
     def set_texture(self,size=80):

@@ -8,3 +8,4 @@ class Squares:
         
     def has_piece(self):
         return self.piece != None
+    

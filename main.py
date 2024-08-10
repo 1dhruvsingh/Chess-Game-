@@ -4,7 +4,7 @@ import sys
 
 from const import *
 from game import Game
-from square import Square
+from square import Squares
 from move import Move
 
 class Main:
@@ -13,7 +13,7 @@ class Main:
         pygame.init()
         self.screen=pygame.display.set_mode((WIDTH,HEIGHT))
         pygame.display.set_caption('Chess')
-        self.game =Game
+        self.game =Game()
         
     def mainloop(self):
         
