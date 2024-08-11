@@ -1,4 +1,3 @@
-
 import pygame
 import sys
 
@@ -19,18 +18,35 @@ class Main:
         
         screen =self.screen
         game =self.game
-        
-        while True:
-            game.show_bg(screen)
-            game.show_pieces(screen)
+        board=self.game.board
+        dragger=self.game.dragger
+     
+      while True:
+            
+         #show methods
+         game.show_bg(screen)
+         game.show_last_move(screen)
+         game.show_moves(screen)
+         game.show_pieces(screen)
+         game.show_hover(screen)
+         
     
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    pygame.quit()
-                    sys.exit()
-                
-            pygame.display.update()
+         if dragger.dragging:
+           dragger.update_blit(screen)
+        
+         for event in pygame.event.get():
+        
+           #click
+           if event.type == pygame.MOUSEBUTTONDOWN:
+              dragger.update_mouse(event.pos)
+            
+              clicked_row= dragger.mouseY//SQSIZE
+              clicked_col= dragger.mousex//SQSIZE
+            
+            #if clicked 
 
+        
+   
 main=Main()
 main.mainloop()            
         
