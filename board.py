@@ -53,7 +53,10 @@ class board:
         piece.clear_moves()
         
         #set last move 
-        self.                                 
+        self.last_move = move
+        
+    def valid_move(self, piece, move):
+        return move in piece.moves                                
                     
     def create(self):
         for row in range(ROWS):
