@@ -80,13 +80,55 @@ class Main:
                        #if piece is being dragged
                        if dragger.dragging:
                          dragger.update_mouse(event.pos)
+                         
+                         released_row=dragger.mouseY //SQSIZE
+                         released_col=dragger.mouseX //SQSIZE
+                         
+                         #create possible move
+                         initial = Square(dragger.initial_row, dragger.initial_col)
+                         final = Square(released_row, released_col)
+                         move = Move(initial,final)
+                         
+                         #valid move ?
+                         if board.valid_move(dragger.piece, move):
+                             #normal capture
+                             captured = board.squares[released_row][released_col].has_piece()
+                             board.move(dragger.piece, move)
+                             
+                             board.set_true_en_passant(dragger.piece)
+                             
+                             
+                             #sounds
+                             game.play_sound(captured)
+                             #show methods
+                             game.show_bg(screen)
+                             game.show_last_move(screen)
+                             game.show_moves(screen)
+                             #next turn
+                             game.next_turn()
+                       
+                       dragger.undrag_piece()
+                       
+                    #key press
+                    elif event.type == pygame.KEYDOWN:
+                        
+                        #changing themes
+                        if event.key == pygame.K_t:
+                            game.change_theme()
+                            
+                        #changing themes
+                        if event.key == pygame.K_r:
+                             game.reset()
+                             game=self.game
+                             board=self.game.board
+                             dragger=self.game.dragger
+                             
+                    elif event.type == pygame.QUIT:
+                        pygame.quit()
+                        sys.exit()
+                        
+                pygame.display.update()
                 
-                
-                
-            
-
-        
-   
+    
 main=Main()
-main.mainloop()            
-        
+main.mainloop()                   

@@ -7,11 +7,54 @@ class board:
     def __init__(self):
         
         self.squares = [[0, 0, 0, 0, 0, 0, 0, 0] for col in range(COLS)]
-        
+        self.last_move = None
         self.create()
         self.add_pieces('white')
         self.add_pieces('black')
         
+        
+    def move(self, piece, move, testing=False):
+        initial = move.initial
+        final=move.final
+        
+        en_pasant_empty = self.squares[final.row][final.col].isempty()
+        
+        #console board move update 
+        self.squares[initial.row][initial.col].piece= None
+        self.squares[final.row][final.col].piece= piece
+        
+        if isinstance(piece, Pawn):
+            #en passant capture
+            diff=final.col - initial.col 
+            if diff !=0 and en_passant_empty:
+                #console board move update
+                self.squares[initial.row][initial.col + diff].piece= None
+                self.squares[final.row][final.col].piece= piece
+                if not testing:
+                    sound= Sound(
+                        os.path.join("assets/sounds/capture.wav"))
+                    sound.play()
+                    
+            #pawn promotion
+            else:
+                self.check_promotion(piece, final)
+                
+        #king castling
+        if isinstance(piece, King):
+            if self.castling(initial, final) and not testing:
+                diff= final.col- initial.col
+                rook= piece.left_rook if (diff<0) else piece.right_rook
+                self.move(rook, rook.moves[-1])
+                
+        #move 
+        piece.moved = True 
+        
+        #clear valid moves
+        piece.clear_moves()
+        
+        #set last move 
+        self.                                 
+                    
     def create(self):
         for row in range(ROWS):
             for col in range (COLS):
@@ -44,8 +87,3 @@ class board:
         
         #KING
         self.squares[row_pawn][4]= Squares(row_pawn ,4, King(colour))
-    
-            
-    
-b=board()
-b.create()
