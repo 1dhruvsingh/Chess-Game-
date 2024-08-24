@@ -81,9 +81,52 @@ class board:
         
         for row in range(ROW):
             for col in range(COLS):
-                
-                "   ***START HERE***   "
-                    
+                if temp_board.squares[row][col].has_enemy_piece(piece.color):
+                    p = temp_board.squares[row][col].piece
+                    temp_board.calc_moves(p, row,col , bool=False)
+                    for m in p.moves:
+                        if isinstance(m.final.piece, King):
+                            return True
+                        
+    def calc_moves(self,piece,row,col , bool=True ):
+
+        # (calculate all the possible valid moves of an specific position )
+        def pawn_moves():
+            #steps
+            steps=1 if piece.moved else 2
+
+            #vertical moves
+            start = row + piece.dir
+            end = row + (piece.dir * ( 1 + steps))
+            for possible_move_row in range (start ,end ,piece.dir):
+                if Squares.in_range(possible_move_row):
+                    if self.squares[possible_move_row][col].isempty():
+                        #create initial and final move squares 
+                        initial = Square(row, col)
+                        final = Square(possible_move_row,col)
+                        #create a new move
+                        move = Move(initial, final)
+
+                        #check potential checks 
+                        if bool :
+                            if not self.in_check(piece,move):
+                                #append new move
+                                piece.add_move(move)
+                        else:
+                            #append new move 
+                            piece.add_move(move)
+
+                    #blocked 
+                    else: break
+                #not in range
+                else: break 
+            
+            #diagonal moves 
+            possible_move_row = row + piece.dir 
+            possible_move_col = [col-1 , col+1]
+   
+   #START HERE *********************************************************************
+
     def create(self):
         for row in range(ROWS):
             for col in range (COLS):
