@@ -343,10 +343,77 @@ class board:
                                         left_rook.add_move(Move_R)
                                         #append new move to the king
                                         piece.add_move(Move_K)
-                                       
-                                    
-
-   #START HERE *********************************************************************
+                
+                #king castling
+                right_rook = self.squares[row][7].piece
+                if isintance(right_rook, Rook):
+                    if not right_rook.moved:
+                        for c in range(5,7):
+                            #castling is not possible because there are pieces in ?
+                            if self.squares[row][c].has_piece():
+                                break
+                            if c == 6:
+                                #adds right rook to king
+                                piece.right_rook = right_rook
+                                
+                                #rook move
+                                initial = Square(row, 7)
+                                final = Square(row, 5)
+                                Move_R = Move(initial ,final)
+                                
+                                #king move 
+                                initial = Square(row, col)
+                                final = Square(row, 6)
+                                Move_K = Move(initial, final)
+                                
+                                #check potential checks 
+                                if bool:
+                                    if not self.in_check(piece, Move_K) and not self.in_check(right_rook, Move_R):
+                                        #append new move to rook
+                                        right_rook.add_move(Move_R)
+                                        #append new move to king 
+                                        piece.add_move(Move_K)
+                                else:
+                                    #append new move to rook
+                                    right_rook.add_move(Move_R)
+                                    #append new move to king
+                                    piece.add_move(Move_K)
+         
+         if isinstance(piece, Pawn):
+             pawn_moves()
+        
+        elif isinstance(piece, Knight):
+            knight_moves()
+        
+        elif isinstance(piece, Bishop):
+            starightline_moves([
+                (-1, -1),# up-right
+                (-1, 1),# up-left
+                (1, 1), #down-right
+                (1, -1) #down-left
+            ])                    
+        
+        elif isinstance(piece, Rook):
+            starightline_moves([
+                (-1, 0),# up
+                (0,1), #right
+                (1, 0), #down
+                (0,-1), #left
+            ])
+        
+        elif isinstance(piece, Queen):
+            starightline_moves([
+                (-1,-1), #up-left
+                (-1,1),#up-right
+                (1,1), #down-right
+                (1,-1), #down-left
+                (-1,0), #up
+                (0, 1), # right
+                (1, 0), # down
+                (0, -1) # left
+            ])
+        elif isinstance(piece, King):
+            king_moves()
 
     def create(self):
         for row in range(ROWS):
