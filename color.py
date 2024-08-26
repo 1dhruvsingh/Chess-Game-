@@ -1,6 +1,5 @@
-class color:
+class Color:
 
-    def _init_(self, light, dark):
+    def __init__(self, light, dark):
         self.light = light
-        self.dark = dark 
-        
+        self.dark = dark

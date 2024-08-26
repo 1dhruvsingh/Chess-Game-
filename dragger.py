@@ -4,7 +4,7 @@ from const import *
 
 class Dragger:
     
-    def _init_(self):
+    def __init__(self):
         self.piece = None
         self.dragging = False 
         self.mouseX = 0

@@ -1,6 +1,6 @@
 class Move:
 
-    def _initi_(self, initial ,final):
+    def __init__(self, initial ,final):
         #initial and final are squares 
         self.initial = initial 
         self.final = final 
@@ -12,4 +12,4 @@ class Move:
         return s
 
     def __eq__(self, other):
-        return self.initial = other.initial and self.dinal == other.final
+        return self.initial == other.initial and self.final == other.final

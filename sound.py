@@ -2,7 +2,7 @@ import pygame
 
 class Sound:
 
-    def _init_(self, path):
+    def __init__(self, path):
         self.path = path 
         self.sound = pygame.mixer.Sound(path)
 
