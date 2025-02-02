@@ -1,0 +1,19 @@
+src/
+  ├── components/
+  │   ├── layout/
+  │   │   ├── Header.jsx
+  │   │   ├── Footer.jsx
+  │   │   └── Layout.jsx
+  │   └── home/
+  │       ├── HeroSection.jsx
+  │       └── FeaturesSection.jsx
+  ├── pages/
+  │   ├── HomePage.jsx
+  │   ├── ImportGamePage.jsx
+  │   ├── AnalysisPage.jsx
+  │   ├── PracticeAIPage.jsx
+  │   ├── LeaderboardPage.jsx
+  │   ├── AboutPage.jsx
+  │   └── ContactPage.jsx
+  ├── App.jsx
+  └── main.jsx 
