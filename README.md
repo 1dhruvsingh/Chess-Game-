@@ -1,7 +1,5 @@
 # Chess-Python-project
-Chess board game (using python)
-<br>
-Author - Dhruv Singh 
+Chess board game (using python) and Chess-review website 
 <br>
 This Chess project is designed with an object-oriented approach, covering the game's various components such as the board, pieces, moves, squares and UI elements within distinct classes. 
 
